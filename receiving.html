@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head> 
+<link rel="icon" href="logo.png" type="image/x-icon">
+<marquee scrollamount="4" behavior="alternate" style="border:solid; background: black; color: white; width=100%; height:20px;">
+Project by  Amit Patel, Abhay Tiwari, Ayush Singh.
+</marquee>
+<link rel="stylesheet" href="style.css">
+
+<style> 
+img{float:right; margin-right:5px;}
+p1{margin-left:10px;}
+ul{position:-webkit-sticky; /* Safari */ position:sticky; top:40px; overflow:hidden; background-color:#E1D9D1}
+li{display:inline;}
+li a:hover:not(.active){background-color:white;}
+
+</style>
+<title>AAA Designs</title>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<img src="logo.png" width="70" height="70" >
+
+<nav>
+<ul>
+<li>
+<a href="mixdesign.html">About Mix Design</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</li>
+<li>
+<a href="aboutus.html">About Us</a>
+</li>
+</ul>
+</nav>
+<br>
+<h1><center>AAA Designs </center></h1>
+<center> <h2>Mix Design</h2> </center>
+<title> Receiving </title> 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<p1>
+Characteristic Compressive strength: <span id="fcko"></span> N/mm<sup>2</sup></p1>
+<br><br>
+<p1>Target mean strength (Grade Designation): <span id="fmo"></span> N/mm<sup>2</sup>
+<br>
+<p1>Degree of site control/supervision: <span id="dsco"></span></p1>
+<br>
+<p1>Method of Concrete placing: <span id="mcpo"></span></p1>
+<br>
+<p1>Workability (slump in mm): <span id="slumpo"></span>
+<br></p1>
+<p1>Maximum nominal size of aggregate: <span id="msao"></span>
+<br>
+<p1>Exposure condition: <span id="exposureo"></span></p1>
+<br>
+<p1>Grade of cement: <span id="cemgrado"></span></p1>
+<br>
+<p1>Type of aggregate: <span id="qofcao"></span></p1>
+<br>
+<p1>Zone of fine aggregate: <span id="zoneo"></span></p1>
+<br>
+<p1>Specific Gravity of fine aggregate: <span id="spgrfaggo"></span></p1>
+<br>
+<p1>Specific Gravity of coarse aggregate: <span id="spgrcaggo"></span></p1>
+<br>
+<p1>Specific Gravity of Cement: <span id="spgrcemo"></span></p1>
+<br> <br>
+<p1>Free water cement ratio is: <span id="wbyco"></span></p1>
+<br>
+<p1>Water content: <span id="wco"></span> Kg/m<sup>3</sup></p1>
+<br>
+<p1>Cement Content: <span id="cco"></span> Kg/m<sup>3</sup></p1>
+<br>
+<p1>Entrapped air, as percentage of volume of concrete: <span id="aco"></span> %</p1>
+<br>
+<p1>Volume of all in aggregate: <span id="aaggo"></span> m<sup>3</sup></p1>
+<br>
+<p1>Quantity of coarse aggregate (SSD condition): <span id="caggo"></span> Kg/m<sup>3</sup></p1>
+<br>
+<p1>Quantity of fine aggregate (SSD condition): <p1><span id="faggo"></span></p1><p1>Kg/m<sup>3</sup></p1>
+<br>
+<br><br>
+
+<div class="print"><center>
+<button onclick="window.print()" class="printpage"> <span>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg> Create PDF
+  </span></button></center>
+</div>
+
+<script> 
+
+<!---->
+
+document.getElementById("fcko").innerHTML=localStorage.getItem("fck_ls");
+document.getElementById("slumpo").innerHTML=localStorage.getItem("slump_ls");
+document.getElementById("dsco").innerHTML=localStorage.getItem("dsc_ls");
+document.getElementById("mcpo").innerHTML=localStorage.getItem("mcp_ls");
+document.getElementById("msao").innerHTML=localStorage.getItem("msa_ls");
+document.getElementById("exposureo").innerHTML=localStorage.getItem("exposure_ls");
+document.getElementById("cemgrado").innerHTML=localStorage.getItem("cemgrad_ls");
+document.getElementById("qofcao").innerHTML=localStorage.getItem("qofca_ls");
+document.getElementById("zoneo").innerHTML=localStorage.getItem("zone_ls");
+document.getElementById("spgrfaggo").innerHTML=localStorage.getItem("spgrfagg_ls");
+document.getElementById("spgrcaggo").innerHTML=localStorage.getItem("spgrcagg_ls");
+document.getElementById("spgrcemo").innerHTML=localStorage.getItem("spgrcem_ls");
+
+
+
+<!--Calculation of target mean strength-->
+var sigma=3.5
+var dsc=localStorage.getItem("dsc_ls");
+var fck = parseInt(localStorage.getItem("fck_ls"));
+if(fck<=15){sigma=3.5;}
+if(fck>15 && fck<=25){sigma=4;}
+if(fck>25 && fck<=55){sigma=5;}
+if(dsc=='Fair'){sigma=sigma+1;}
+var fm = fck+1.65*sigma
+document.getElementById("fmo").innerHTML=fm;
+
+
+
+var wbycg='invalid grade of cement for this compressive strength'
+var cement = parseInt(localStorage.getItem("cemgrad_ls"));
+
+
+if(cement==33 && fm<16 && fm>=15){wbycg=0.635;}
+if(cement==33 && fm<17 && fm>=16){wbycg=0.615;}
+if(cement==33 && fm<18 && fm>=17){wbycg=0.605;}
+if(cement==33 && fm<19 && fm>=18){wbycg=0.585;}
+if(cement==33 && fm<20 && fm>=19){wbycg=0.57;}
+if(cement==33 && fm<21 && fm>=20){wbycg=0.56;}
+if(cement==33 && fm<22 && fm>=21){wbycg=0.545;}
+if(cement==33 && fm<23 && fm>=22){wbycg=0.525;}
+if(cement==33 && fm<24 && fm>=23){wbycg=0.52;}
+if(cement==33 && fm<25 && fm>=24){wbycg=0.505;}
+if(cement==33 && fm<26 && fm>=25){wbycg=0.5;}
+if(cement==33 && fm<27 && fm>=26){wbycg=0.485;}
+if(cement==33 && fm<28 && fm>=27){wbycg=0.475;}
+if(cement==33 && fm<29 && fm>=28){wbycg=0.465;}
+if(cement==33 && fm<30 && fm>=29){wbycg=0.455;}
+if(cement==33 && fm<31 && fm>=30){wbycg=0.45;}
+if(cement==33 && fm<32 && fm>=31){wbycg=0.44;}
+if(cement==33 && fm<33 && fm>=32){wbycg=0.43;}
+if(cement==33 && fm<34 && fm>=33){wbycg=0.42;}
+if(cement==33 && fm<35 && fm>=34){wbycg=0.415;}
+if(cement==33 && fm<36 && fm>=35){wbycg=0.405;}
+if(cement==33 && fm<37 && fm>=36){wbycg=0.4;}
+if(cement==33 && fm<38 && fm>=37){wbycg=0.39;}
+if(cement==33 && fm<39 && fm>=38){wbycg=0.38;}
+if(cement==33 && fm<40 && fm>=39){wbycg=0.375;}
+if(cement==33 && fm<41 && fm>=40){wbycg=0.365;}
+if(cement==33 && fm<42 && fm>=41){wbycg=0.36;}
+if(cement==33 && fm<43 && fm>=42){wbycg=0.35;}
+if(cement==33 && fm<44 && fm>=43){wbycg=0.345;}
+if(cement==33 && fm<45 && fm>=44){wbycg=0.34;}
+if(cement==33 && fm<46 && fm>=45){wbycg=0.335;}
+if(cement==33 && fm<47 && fm>=46){wbycg=0.325;}
+if(cement==33 && fm<48 && fm>=47){wbycg=0.32;}
+if(cement==33 && fm<49 && fm>=48){wbycg=0.315;}
+if(cement==33 && fm<50 && fm>=49){wbycg=0.305;}
+if(cement==33 && fm<51 && fm>=50){wbycg=0.3;}
+if(cement==33 && fm<52 && fm>=51){wbycg=0.295;}
+if(cement==33 && fm<53 && fm>=52){wbycg=0.29;}
+if(cement==33 && fm<54 && fm>=53){wbycg=0.28;}
+if(cement==33 && fm<55 && fm>=54){wbycg=0.275;}
+if(cement==33 && fm<56 && fm>=55){wbycg=0.27;}
+if(cement==33 && fm<57 && fm>=56){wbycg=0.265;}
+if(cement==33 && fm<58 && fm>=57){wbycg=0.26;}
+if(cement==33 && fm<59 && fm>=58){wbycg=0.255;}
+if(cement==33 && fm<60 && fm>=59){wbycg=0.25;}
+
+
+
+
+if(cement==43 && fm<20 && fm>=19){wbycg=0.625;}
+if(cement==43 && fm<21 && fm>=20){wbycg=0.605;}
+if(cement==43 && fm<22 && fm>=21){wbycg=0.59;}
+if(cement==43 && fm<23 && fm>=22){wbycg=0.58;}
+if(cement==43 && fm<24 && fm>=23){wbycg=0.565;}
+if(cement==43 && fm<25 && fm>=24){wbycg=0.555;}
+if(cement==43 && fm<26 && fm>=25){wbycg=0.54;}
+if(cement==43 && fm<27 && fm>=26){wbycg=0.53;}
+if(cement==43 && fm<28 && fm>=27){wbycg=0.52;}
+if(cement==43 && fm<29 && fm>=28){wbycg=0.505;}
+if(cement==43 && fm<30 && fm>=29){wbycg=0.5;}
+if(cement==43 && fm<31 && fm>=30){wbycg=0.485;}
+if(cement==43 && fm<32 && fm>=31){wbycg=0.475;}
+if(cement==43 && fm<33 && fm>=32){wbycg=0.465;}
+if(cement==43 && fm<34 && fm>=33){wbycg=0.455;}
+if(cement==43 && fm<35 && fm>=34){wbycg=0.45;}
+if(cement==43 && fm<36 && fm>=35){wbycg=0.44;}
+if(cement==43 && fm<37 && fm>=36){wbycg=0.435;}
+if(cement==43 && fm<38 && fm>=37){wbycg=0.425;}
+if(cement==43 && fm<39 && fm>=38){wbycg=0.415;}
+if(cement==43 && fm<40 && fm>=39){wbycg=0.41;}
+if(cement==43 && fm<41 && fm>=40){wbycg=0.4;}
+if(cement==43 && fm<42 && fm>=41){wbycg=0.395;}
+if(cement==43 && fm<43 && fm>=42){wbycg=0.385;}
+if(cement==43 && fm<44 && fm>=43){wbycg=0.38;}
+if(cement==43 && fm<45 && fm>=44){wbycg=0.37;}
+if(cement==43 && fm<46 && fm>=45){wbycg=0.365;}
+if(cement==43 && fm<47 && fm>=46){wbycg=0.36;}
+if(cement==43 && fm<48 && fm>=47){wbycg=0.35;}
+if(cement==43 && fm<49 && fm>=48){wbycg=0.345;}
+if(cement==43 && fm<50 && fm>=49){wbycg=0.335;}
+if(cement==43 && fm<51 && fm>=50){wbycg=0.33;}
+if(cement==43 && fm<52 && fm>=51){wbycg=0.325;}
+if(cement==43 && fm<53 && fm>=52){wbycg=0.315;}
+if(cement==43 && fm<54 && fm>=53){wbycg=0.31;}
+if(cement==43 && fm<55 && fm>=54){wbycg=0.305;}
+if(cement==43 && fm<56 && fm>=55){wbycg=0.3;}
+if(cement==43 && fm<57 && fm>=56){wbycg=0.295;}
+if(cement==43 && fm<58 && fm>=57){wbycg=0.29;}
+if(cement==43 && fm<59 && fm>=58){wbycg=0.285;}
+if(cement==43 && fm<60 && fm>=59){wbycg=0.28;}
+if(cement==43 && fm<61 && fm>=60){wbycg=0.275;}
+if(cement==43 && fm<62 && fm>=61){wbycg=0.27;}
+if(cement==43 && fm<63 && fm>=62){wbycg=0.26;}
+if(cement==43 && fm<64 && fm>=63){wbycg=0.255;}
+if(cement==43 && fm<65 && fm>=64){wbycg=0.25;}
+
+
+
+
+if(cement==53 && fm<25 && fm>=24){wbycg=0.64;}
+if(cement==53 && fm<26 && fm>=25){wbycg=0.625;}
+if(cement==53 && fm<27 && fm>=26){wbycg=0.61;}
+if(cement==53 && fm<28 && fm>=27){wbycg=0.6;}
+if(cement==53 && fm<29 && fm>=28){wbycg=0.585;}
+if(cement==53 && fm<30 && fm>=29){wbycg=0.575;}
+if(cement==53 && fm<31 && fm>=30){wbycg=0.565;}
+if(cement==53 && fm<32 && fm>=31){wbycg=0.555;}
+if(cement==53 && fm<33 && fm>=32){wbycg=0.54;}
+if(cement==53 && fm<34 && fm>=33){wbycg=0.53;}
+if(cement==53 && fm<35 && fm>=34){wbycg=0.52;}
+if(cement==53 && fm<36 && fm>=35){wbycg=0.51;}
+if(cement==53 && fm<37 && fm>=36){wbycg=0.5;}
+if(cement==53 && fm<38 && fm>=37){wbycg=0.49;}
+if(cement==53 && fm<39 && fm>=38){wbycg=0.48;}
+if(cement==53 && fm<40 && fm>=39){wbycg=0.47;}
+if(cement==53 && fm<41 && fm>=40){wbycg=0.46;}
+if(cement==53 && fm<42 && fm>=41){wbycg=0.455;}
+if(cement==53 && fm<43 && fm>=42){wbycg=0.445;}
+if(cement==53 && fm<44 && fm>=43){wbycg=0.435;}
+if(cement==53 && fm<45 && fm>=44){wbycg=0.43;}
+if(cement==53 && fm<46 && fm>=45){wbycg=0.42;}
+if(cement==53 && fm<47 && fm>=46){wbycg=0.415;}
+if(cement==53 && fm<48 && fm>=47){wbycg=0.405;}
+if(cement==53 && fm<49 && fm>=48){wbycg=0.395;}
+if(cement==53 && fm<50 && fm>=49){wbycg=0.39;}
+if(cement==53 && fm<51 && fm>=50){wbycg=0.385;}
+if(cement==53 && fm<52 && fm>=51){wbycg=0.375;}
+if(cement==53 && fm<53 && fm>=52){wbycg=0.37;}
+if(cement==53 && fm<54 && fm>=53){wbycg=0.365;}
+if(cement==53 && fm<55 && fm>=54){wbycg=0.355;}
+if(cement==53 && fm<56 && fm>=55){wbycg=0.35;}
+if(cement==53 && fm<57 && fm>=56){wbycg=0.345;}
+if(cement==53 && fm<58 && fm>=57){wbycg=0.335;}
+if(cement==53 && fm<59 && fm>=58){wbycg=0.33;}
+if(cement==53 && fm<60 && fm>=59){wbycg=0.325;}
+if(cement==53 && fm<61 && fm>=60){wbycg=0.32;}
+if(cement==53 && fm<62 && fm>=61){wbycg=0.315;}
+if(cement==53 && fm<63 && fm>=62){wbycg=0.31;}
+if(cement==53 && fm<64 && fm>=63){wbycg=0.31;}
+if(cement==53 && fm<65 && fm>=64){wbycg=0.3;}
+if(cement==53 && fm<66 && fm>=65){wbycg=0.29;}
+if(cement==53 && fm<67 && fm>=66){wbycg=0.285;}
+if(cement==53 && fm<68 && fm>=67){wbycg=0.28;}
+if(cement==53 && fm<69 && fm>=68){wbycg=0.275;}
+if(cement==53 && fm<70 && fm>=69){wbycg=0.27;}
+if(cement==53 && fm<71 && fm>=70){wbycg=0.265;}
+
+
+<!--Finalising w/c ratio which is minimum of exposure and curve of grade of concrete vs water content-->
+var exposureo =localStorage.getItem("exposure_ls");
+
+if(exposureo=='Mild' && wbycg>=0.55 && fm>=20){wbycg=0.55;}
+if(exposureo=='Moderate' && wbycg>=0.50 && fm>=25){wbycg=0.50;}
+if(exposureo=='Severe' && wbycg>=0.45 && fm>=30){wbycg=0.45;}
+if(exposureo=='Very Severe' && wbycg>=0.45 && fm>=35){wbycg=0.45;}
+if(exposureo=='Extreme' && wbycg>=0.40 && fm>=40){wbycg=0.40;}
+
+if(exposureo=='Mild' && wbycg>=0.55 && fm<20){wbycg='For this exposure, minimum target mean strength should be 20N/mm2';}
+if(exposureo=='Moderate' && wbycg>=0.50 && fm<25){wbycg='For this exposure, minimum target mean strength should be 20N/mm2';}
+if(exposureo=='Severe' && wbycg>=0.45 && fm<30){wbycg='For this exposure, minimum target mean strength should be 20N/mm2';}
+if(exposureo=='Very Severe' && wbycg>=0.45 && fm<35){wbycg='For this exposure, minimum target mean strength should be 20N/mm2';}
+if(exposureo=='Extreme' && wbycg>=0.40 && fm<40){wbycg='For this exposure, minimum target mean strength should be 20N/mm2';}
+
+document.getElementById("wbyco").innerHTML=wbycg;
+
+
+<!--Adjustments in water content due to compaction factor and quality of coarse aggregate-->
+var msa=localStorage.getItem("msa_ls");
+var wc='Invalid Inputs'
+
+if(msa=='10mm'){wc=208;}
+if(msa=='20mm'){wc=186;}
+if(msa=='40mm'){wc=165;}
+
+
+var qofca =localStorage.getItem("qofca_ls");
+if(qofca=='Angular Coarse Aggregate '){wc=wc;}
+if(qofca=='Sub-angular Aggregates'){wc=wc-10;}
+if(qofca=='Gravel with some crushed particles'){wc=wc-15;}
+if(qofca=='Rounded aggregate'){wc=wc-20;}
+
+
+var slump = parseInt(localStorage.getItem("slump_ls"));
+
+var wc=wc+((slump-50)*0.04*0.03*wc)
+
+document.getElementById("wco").innerHTML=wc;
+
+
+
+<!--Determining Cement Content-->
+
+var cc=wc/wbycg
+
+if(exposureo=='Mild' && cc<300){cc=300;}
+if(exposureo=='Moderate' && cc<300){cc=300;}
+if(exposureo=='Severe' && cc<320){cc=320;}
+if(exposureo=='Very Severe' && cc<340){cc=340;}
+if(exposureo=='Extreme' && cc<360){cc=300;}
+
+if(cc>450){cc=450;}
+document.getElementById("cco").innerHTML=cc;
+
+
+var ac=0
+if(msa=='10mm'){ac=1.5;}
+if(msa=='20mm'){ac=1.0;}
+if(msa=='40mm'){ac=0.8;}
+
+document.getElementById("aco").innerHTML=ac;
+
+var zone=localStorage.getItem("zone_ls");
+var p='Percentage of coarse aggregate'
+if(msa=='10mm' && zone=='Zone 1st'){p=48;}
+if(msa=='20mm' && zone=='Zone 1st'){p=60;}
+if(msa=='40mm' && zone=='Zone 1st'){p=69;}
+
+if(msa=='10mm' && zone=='Zone 2nd'){p=50;}
+if(msa=='20mm' && zone=='Zone 2nd'){p=62;}
+if(msa=='40mm' && zone=='Zone 2nd'){p=71;}
+
+if(msa=='10mm' && zone=='Zone 3rd'){p=52;}
+if(msa=='20mm' && zone=='Zone 3rd'){p=64;}
+if(msa=='40mm' && zone=='Zone 3rd'){p=72;}
+
+if(msa=='10mm' && zone=='Zone 4th'){p=54;}
+if(msa=='20mm' && zone=='Zone 4th'){p=66;}
+if(msa=='40mm' && zone=='Zone 4th'){p=73;}
+
+p=p+((0.5-wbycg)/0.05)
+
+var mcp=localStorage.getItem("mcp_ls");
+if(mcp=='Pumpable'){p=0.9*p;}
+
+var spgrcem=localStorage.getItem("spgrcem_ls");
+var spgrcagg=localStorage.getItem("spgrcagg_ls");
+var spgrfagg=localStorage.getItem("spgrfagg_ls");
+
+var aagg=(1-(ac/100))-(wc/1000)-(cc/(spgrcem*1000))
+
+var cagg= (p/100)*aagg*spgrcagg*1000
+
+var fagg= ((100-p)/100)*aagg*spgrfagg*1000
+
+
+document.getElementById("aaggo").innerHTML=aagg;
+
+document.getElementById("caggo").innerHTML=cagg;
+
+document.getElementById("faggo").innerHTML=fagg;
+
+
+</script>
+
+
+</html>

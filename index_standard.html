@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head> 
+<link rel="icon" href="logo.png" type="image/x-icon">
+<marquee behavior="alternate" style="border:solid; background: black; color: white; width=100%; height:20px; ">
+Project by Amit Patel, Abhay Tiwari, Ayush Singh.
+</marquee>
+<link rel="stylesheet" href="style.css">
+
+
+<style>
+
+
+img{float:right; margin-right:15px;}
+p1{margin-left:10px;}
+ul{position:-webkit-sticky; /* Safari */ position:sticky; top:30px; overflow:hidden; background-color:#E1D9D1}
+li{display:inline;}
+li a:hover:not(.active){background-color:white;}
+</style>
+<title>AAA Designs</title>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<img src="logo.png" width="70" height="70" >
+<nav>
+<ul>
+<li>
+<a href="mixdesign.html">About Mix Design</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</li>
+<li>
+<a href="aboutus.html">About Us</a>
+</li>
+</ul>
+</nav>
+<br>
+<center><h2>AAA DESIGNS</h2>
+</center>
+
+<center> <h2>Mix Design Calculator</h2> </center>
+
+
+
+<script>
+
+function passvalues()
+{
+
+
+var fck= document.getElementById("fck").value;
+localStorage.setItem("fck_ls",fck);
+
+var slump= document.getElementById("slump").value;
+localStorage.setItem("slump_ls",slump);
+
+var dsc= document.getElementById("dsc").value;
+localStorage.setItem("dsc_ls",dsc);
+
+var mcp= document.getElementById("mcp").value;
+localStorage.setItem("mcp_ls",mcp);
+
+var msa= document.getElementById("msa").value;
+localStorage.setItem("msa_ls",msa);
+
+var exposure= document.getElementById("exposure").value;
+localStorage.setItem("exposure_ls",exposure);
+
+var cemgrad= document.getElementById("cemgrad").value;
+localStorage.setItem("cemgrad_ls",cemgrad);
+
+var qofca= document.getElementById("qofca").value;
+localStorage.setItem("qofca_ls",qofca);
+
+var zone= document.getElementById("zone").value;
+localStorage.setItem("zone_ls",zone);
+
+var spgrfagg= document.getElementById("spgrfagg").value;
+localStorage.setItem("spgrfagg_ls",spgrfagg);
+
+var spgrcagg= document.getElementById("spgrcagg").value;
+localStorage.setItem("spgrcagg_ls",spgrcagg);
+
+var spgrcem= document.getElementById("spgrcem").value;
+localStorage.setItem("spgrcem_ls",spgrcem);
+
+return false;
+
+
+
+}
+</script>
+
+
+<form action="receiving.html" method="GET">
+<!--Taking inputs-->
+ <p1>Characteristic compressive strength in N/mm<sup>2</sup>: <input type="number" id="fck" style="border:2px solid Tomato;"  placeholder="Numbers only" max="60"></p1>
+ <br> <br>
+
+<p1>Workability (slump in mm):<input type="number" id="slump" value="50" style="border:2px solid Tomato;" placeholder="Numbers only"> </p1>
+<br><br>
+
+<p1>Degree of site control/supervision:</p1> <select id="dsc" style="border:2px solid Violet;"> 
+<option selected>Good</option>
+<option>Fair</option> 
+</select>
+<br><br>
+
+<p1>Method of Concreting placing::</p1> <select id="mcp" style="border:2px solid Violet;"> 
+<option selected>Chute (Non pumpable)</option>
+<option>Pumpable</option> 
+</select>
+<br><br>
+
+ <p1>Maximum Nominal size of aggregate:</p1> <select id="msa" style="border:2px solid Violet;"> 
+<option>10mm</option> 
+<option selected>20mm</option> 
+<option>40mm</option> 
+</select>
+<br><br>
+
+<p1>Exposure conditions:</p1> <select id="exposure" style="border:2px solid Violet;">
+<option selected>Mild</option>
+<option>Moderate</option>
+ <option>Severe</option> 
+<option>Very Severe</option> 
+<option>Extreme</option> 
+</select> <br><br>
+
+
+<p1>Grade of cement:</p1> <select id="cemgrad" style="border:2px solid Violet;"> 
+<option>33</option>
+<option selected>43</option>
+<option>53</option>
+</select>
+  <br> <br>
+
+
+<p1>Quality of coarse aggregate:</p1> <select id="qofca" style="border:2px solid Violet;"> 
+<option selected>Angular Coarse Aggregate</option>
+<option>Sub-angular Aggregates</option>
+<option>Gravel with some crushed particles</option>
+<option>Rounded aggregate</option>
+</select>
+<br><br>
+
+
+<p1>Zone of fine aggregte:</p1> <select id="zone" style="border:2px solid Violet;"> 
+<option>Zone 1st</option> 
+<option selected>Zone 2nd</option> 
+<option>Zone 3rd</option> 
+<option>Zone 4th</option> 
+</select>
+
+<br> <br>
+
+
+<p1>Specific gravity of fine aggregate (SSD condition): <input type="number" id="spgrfagg" value="2.74" max="9" step="0.01" style="border:2px solid DodgerBlue;"></p1>
+<br><br>
+<p1>Specific gravity of coarse aggregate (SSD condition):  <input type="number" id="spgrcagg" value="2.65" max="9" step="0.01" style="border:2px solid DodgerBlue;"></p1>
+<br><br>
+<p1>Specific gravity of cement:  <input type="number" id="spgrcem" value="3.15" max="9" step="0.01" style="border:2px solid DodgerBlue;"></p1>
+
+<br> <br>
+
+
+
+
+<br><br>
+<center><button onclick="passvalues();"> Submit</button></center><br>
+
+</form>
+
+</html>
